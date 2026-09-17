@@ -1,25 +1,42 @@
 import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import {
-  Routes,
-  Route,
-  Navigate
-} from "react-router-dom";
+/* =========================================
+   MODULE 1
+   Login / Registration / Profile
+========================================= */
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+
+
+/* =========================================
+   CITIZEN MODULES
+========================================= */
 
 import CitizenHome from "./pages/CitizenHome";
 
 import ReportComplaint from "./pages/ReportComplaint";
 
 import MyComplaints from "./pages/MyComplaints";
+
 import ComplaintDetails from "./pages/ComplaintDetails";
 
 import TrackComplaint from "./pages/TrackComplaint";
 
+
+/* =========================================
+   ADMIN / OFFICER MODULE
+========================================= */
+
 import AdminHome from "./pages/AdminHome";
+
+
+/* =========================================
+   FIELD STAFF MODULE
+========================================= */
+
 import StaffHome from "./pages/StaffHome";
 
 
@@ -29,13 +46,26 @@ function App() {
 
     <Routes>
 
+
+      {/* =====================================
+          DEFAULT ROUTE
+      ===================================== */}
+
       <Route
         path="/"
-        element={<Navigate to="/login" />}
+        element={
+          <Navigate
+            to="/login"
+            replace
+          />
+        }
       />
 
 
-      {/* MODULE 1 */}
+      {/* =====================================
+          MODULE 1
+          AUTHENTICATION
+      ===================================== */}
 
       <Route
         path="/login"
@@ -53,7 +83,9 @@ function App() {
       />
 
 
-      {/* CITIZEN */}
+      {/* =====================================
+          CITIZEN DASHBOARD
+      ===================================== */}
 
       <Route
         path="/citizen"
@@ -61,7 +93,10 @@ function App() {
       />
 
 
-      {/* MODULE 2 */}
+      {/* =====================================
+          MODULE 2
+          REPORT COMPLAINT
+      ===================================== */}
 
       <Route
         path="/citizen/report"
@@ -69,7 +104,10 @@ function App() {
       />
 
 
-      {/* MODULE 3 */}
+      {/* =====================================
+          MODULE 3
+          COMPLAINT HISTORY
+      ===================================== */}
 
       <Route
         path="/citizen/complaints"
@@ -82,7 +120,10 @@ function App() {
       />
 
 
-      {/* MODULE 4 */}
+      {/* =====================================
+          MODULE 4
+          TRACK COMPLAINT
+      ===================================== */}
 
       <Route
         path="/citizen/track"
@@ -95,7 +136,9 @@ function App() {
       />
 
 
-      {/* ADMIN */}
+      {/* =====================================
+          ADMIN / OFFICER
+      ===================================== */}
 
       <Route
         path="/admin"
@@ -103,17 +146,35 @@ function App() {
       />
 
 
-      {/* FIELD STAFF */}
+      {/* =====================================
+          FIELD STAFF
+      ===================================== */}
 
       <Route
         path="/staff"
         element={<StaffHome />}
       />
 
+
+      {/* =====================================
+          FALLBACK
+          If URL doesn't exist
+      ===================================== */}
+
+      <Route
+        path="*"
+        element={
+          <Navigate
+            to="/login"
+            replace
+          />
+        }
+      />
+
     </Routes>
 
   );
-
 }
+
 
 export default App;
