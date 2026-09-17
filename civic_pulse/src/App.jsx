@@ -3,7 +3,7 @@ import React from "react";
 import {
   Routes,
   Route,
-  Navigate,
+  Navigate
 } from "react-router-dom";
 
 import Login from "./pages/Login";
@@ -11,13 +11,16 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 
 import CitizenHome from "./pages/CitizenHome";
-import AdminHome from "./pages/AdminHome";
-import StaffHome from "./pages/StaffHome";
 
 import ReportComplaint from "./pages/ReportComplaint";
 
 import MyComplaints from "./pages/MyComplaints";
 import ComplaintDetails from "./pages/ComplaintDetails";
+
+import TrackComplaint from "./pages/TrackComplaint";
+
+import AdminHome from "./pages/AdminHome";
+import StaffHome from "./pages/StaffHome";
 
 
 function App() {
@@ -26,21 +29,13 @@ function App() {
 
     <Routes>
 
-      {/* =========================
-          DEFAULT
-      ========================= */}
-
       <Route
         path="/"
-        element={
-          <Navigate to="/login" />
-        }
+        element={<Navigate to="/login" />}
       />
 
 
-      {/* =========================
-          MODULE 1
-      ========================= */}
+      {/* MODULE 1 */}
 
       <Route
         path="/login"
@@ -58,9 +53,7 @@ function App() {
       />
 
 
-      {/* =========================
-          CITIZEN DASHBOARD
-      ========================= */}
+      {/* CITIZEN */}
 
       <Route
         path="/citizen"
@@ -68,10 +61,7 @@ function App() {
       />
 
 
-      {/* =========================
-          MODULE 2
-          COMPLAINT REGISTRATION
-      ========================= */}
+      {/* MODULE 2 */}
 
       <Route
         path="/citizen/report"
@@ -79,10 +69,7 @@ function App() {
       />
 
 
-      {/* =========================
-          MODULE 3
-          COMPLAINT HISTORY
-      ========================= */}
+      {/* MODULE 3 */}
 
       <Route
         path="/citizen/complaints"
@@ -95,9 +82,20 @@ function App() {
       />
 
 
-      {/* =========================
-          ADMIN
-      ========================= */}
+      {/* MODULE 4 */}
+
+      <Route
+        path="/citizen/track"
+        element={<TrackComplaint />}
+      />
+
+      <Route
+        path="/citizen/track/:id"
+        element={<TrackComplaint />}
+      />
+
+
+      {/* ADMIN */}
 
       <Route
         path="/admin"
@@ -105,9 +103,7 @@ function App() {
       />
 
 
-      {/* =========================
-          FIELD STAFF
-      ========================= */}
+      {/* FIELD STAFF */}
 
       <Route
         path="/staff"
@@ -117,6 +113,7 @@ function App() {
     </Routes>
 
   );
+
 }
 
 export default App;
