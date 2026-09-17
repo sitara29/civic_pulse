@@ -1,16 +1,59 @@
-# React + Vite
+# CivicPulse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Civic Complaints Management System
 
-Currently, two official plugins are available:
+> **See it. Report it. Track it. Resolve it.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+CivicPulse is a web-based Civic Complaints Management System designed to provide a simple and transparent workflow for reporting, managing, assigning, resolving, and tracking civic complaints.
 
-## React Compiler
+The system connects **Citizens, Admin/Officers, and Field Staff** through a single complaint lifecycle.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+# 1. Project Overview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+CivicPulse provides a digital platform through which citizens can report civic issues such as:
+
+- Water supply problems
+- Road damage
+- Garbage and waste
+- Streetlight issues
+- Drainage problems
+- Public safety concerns
+- Other civic issues
+
+Instead of handling each role separately, CivicPulse connects all users through one common complaint workflow.
+
+### Complete Workflow
+
+```text
+Citizen
+   |
+   | Report Complaint
+   v
+Complaint Created
+   |
+   v
+Admin / Officer
+   |
+   | Verify Complaint
+   | Assign Field Staff
+   | Update Status
+   v
+Field Staff
+   |
+   | View Assigned Complaint
+   | Update Work Status
+   | Add Remarks
+   | Mark Resolved
+   v
+Complaint Resolved
+   |
+   v
+Citizen
+   |
+   | Track Complaint
+   | View History
+   | Give Feedback
+   v
+Completed
