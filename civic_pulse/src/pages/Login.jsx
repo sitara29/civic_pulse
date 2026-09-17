@@ -26,11 +26,28 @@ function Login() {
       name: "Admin Officer",
     },
     {
-      email: "staff@civicpulse.com",
-      password: "Civic@2026#Staff",
-      role: "staff",
-      name: "Field Staff",
-    },
+        id: "C001",
+        email: "citizen@civicpulse.com",
+        password: "Civic@2026#Citizen",
+        role: "citizen",
+        name: "Citizen User",
+      },
+    
+      {
+        id: "A001",
+        email: "admin@civicpulse.com",
+        password: "Civic@2026#Admin",
+        role: "admin",
+        name: "Admin Officer",
+      },
+    
+      {
+        id: "FS001",
+        email: "staff@civicpulse.com",
+        password: "Civic@2026#Staff",
+        role: "fieldStaff",
+        name: "Ravi Kumar",
+      },
   ];
 
   const handleLogin = (event) => {
