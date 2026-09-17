@@ -12,19 +12,7 @@ function Login() {
 
   const [error, setError] = useState("");
 
-  const demoUsers = [
-    {
-      email: "citizen@civicpulse.com",
-      password: "Civic@2026#Citizen",
-      role: "citizen",
-      name: "Citizen User",
-    },
-    {
-      email: "admin@civicpulse.com",
-      password: "Civic@2026#Admin",
-      role: "admin",
-      name: "Admin Officer",
-    },
+  const demoUsers = [ 
     {
         id: "C001",
         email: "citizen@civicpulse.com",
@@ -80,7 +68,7 @@ function Login() {
       navigate("/citizen");
     } else if (user.role === "admin") {
       navigate("/admin");
-    } else if (user.role === "staff") {
+    } else if (user.role === "fieldStaff") {
       navigate("/staff");
     }
   };
