@@ -1,0 +1,1238 @@
+/* =========================================================
+   CIVICPULSE HOME — PHASE 1B
+   Navbar + Hero + interactive city visual
+   ========================================================= */
+
+.home-page {
+  min-height: 100vh;
+  color: var(--cp-ink);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.cp-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  height: 76px;
+
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid rgba(210, 226, 219, 0.72);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.cp-navbar-inner {
+  width: min(calc(100% - 40px), var(--cp-content-width));
+  height: 100%;
+  margin-inline: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cp-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--cp-ink);
+  text-decoration: none;
+}
+
+.cp-brand-mark {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(8, 127, 91, 0.16);
+  border-radius: 12px;
+
+  color: var(--cp-primary);
+  background: linear-gradient(145deg, #ffffff, #eaf8f2);
+
+  font-size: 21px;
+  box-shadow: 0 5px 16px rgba(8, 127, 91, 0.09);
+}
+
+.cp-brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cp-brand-copy strong {
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.cp-brand-copy strong span {
+  color: var(--cp-primary);
+}
+
+.cp-brand-copy small {
+  color: var(--cp-muted-2);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.cp-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.cp-nav a {
+  position: relative;
+
+  color: var(--cp-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+
+  transition: color var(--cp-fast) ease;
+}
+
+.cp-nav a:not(.cp-nav-login):not(.cp-nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+
+  height: 2px;
+  border-radius: 999px;
+
+  background: var(--cp-primary);
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition: transform var(--cp-normal) var(--cp-ease);
+}
+
+.cp-nav a:hover {
+  color: var(--cp-primary-dark);
+}
+
+.cp-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.cp-nav-login {
+  color: var(--cp-ink-2) !important;
+}
+
+.cp-nav-cta {
+  min-height: 40px;
+  padding: 0 15px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #fff !important;
+  background: var(--cp-primary);
+  border-radius: 10px;
+
+  box-shadow: 0 7px 18px rgba(8, 127, 91, 0.18);
+
+  transition:
+    transform var(--cp-fast) var(--cp-ease),
+    box-shadow var(--cp-normal) var(--cp-ease),
+    background var(--cp-normal) ease;
+}
+
+.cp-nav-cta:hover {
+  background: var(--cp-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(8, 127, 91, 0.25);
+}
+
+.cp-nav-cta::after {
+  display: none !important;
+}
+
+.cp-menu-button {
+  display: none;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.cp-hero {
+  position: relative;
+  min-height: calc(100vh - 76px);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+.cp-hero-inner {
+  position: relative;
+  z-index: 2;
+
+  width: min(calc(100% - 40px), var(--cp-content-width));
+  margin-inline: auto;
+
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: 0.86fr 1.14fr;
+  align-items: center;
+  gap: 48px;
+
+  padding: 48px 0 28px;
+}
+
+.cp-hero-copy {
+  position: relative;
+  z-index: 4;
+  padding-bottom: 10px;
+
+  animation: cpHeroCopyIn 720ms var(--cp-ease) both;
+}
+
+.cp-hero-eyebrow {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 31px;
+  padding: 0 11px;
+
+  border: 1px solid rgba(8, 127, 91, 0.14);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: var(--cp-primary-dark);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  box-shadow: var(--cp-shadow-sm);
+}
+
+.cp-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+
+  background: var(--cp-primary);
+
+  box-shadow: 0 0 0 5px rgba(8, 127, 91, 0.10);
+
+  animation: cpLivePulse 1.8s ease-in-out infinite;
+}
+
+.cp-hero h1 {
+  margin: 22px 0 20px;
+
+  font-size: clamp(58px, 6.2vw, 88px);
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+
+  color: var(--cp-ink);
+}
+
+.cp-hero h1 span {
+  color: var(--cp-primary);
+}
+
+.cp-hero-text {
+  max-width: 520px;
+  margin: 0;
+
+  color: var(--cp-muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.cp-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin-top: 28px;
+}
+
+.cp-hero-primary {
+  min-height: 49px;
+  padding-inline: 19px;
+}
+
+.cp-hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 30px;
+}
+
+.cp-trust-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.cp-trust-avatars span {
+  width: 27px;
+  height: 27px;
+
+  display: grid;
+  place-items: center;
+
+  margin-left: -5px;
+
+  border: 2px solid #f5faf8;
+  border-radius: 50%;
+
+  background: #dcece6;
+  color: var(--cp-primary-dark);
+
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.cp-trust-avatars span:first-child {
+  margin-left: 0;
+}
+
+.cp-trust-avatars span:nth-child(2) {
+  background: #e8e1d3;
+}
+
+.cp-trust-avatars span:nth-child(3) {
+  background: #d7e8ee;
+}
+
+.cp-trust-avatars span:last-child {
+  background: var(--cp-primary);
+  color: #fff;
+}
+
+.cp-hero-trust p {
+  margin: 0;
+  color: var(--cp-muted-2);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.cp-hero-trust strong {
+  color: var(--cp-ink-2);
+}
+
+/* =========================================================
+   HERO AMBIENT GLOWS
+   ========================================================= */
+
+.cp-hero-glow {
+  position: absolute;
+  z-index: -1;
+
+  border-radius: 50%;
+  pointer-events: none;
+
+  filter: blur(3px);
+}
+
+.cp-hero-glow-one {
+  width: 580px;
+  height: 580px;
+
+  top: -260px;
+  left: -180px;
+
+  background: radial-gradient(
+    circle,
+    rgba(42, 169, 160, 0.12),
+    transparent 67%
+  );
+
+  animation: cpGlowFloat 11s ease-in-out infinite alternate;
+}
+
+.cp-hero-glow-two {
+  width: 620px;
+  height: 620px;
+
+  right: -260px;
+  bottom: -310px;
+
+  background: radial-gradient(
+    circle,
+    rgba(8, 127, 91, 0.12),
+    transparent 68%
+  );
+
+  animation: cpGlowFloat 14s ease-in-out infinite alternate-reverse;
+}
+
+/* =========================================================
+   CITY SCENE
+   ========================================================= */
+
+.cp-hero-visual {
+  position: relative;
+  z-index: 3;
+
+  min-width: 0;
+
+  animation: cpHeroVisualIn 800ms 90ms var(--cp-ease) both;
+}
+
+.cp-city-scene {
+  position: relative;
+
+  min-height: 530px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(199, 218, 209, 0.82);
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      circle at 68% 28%,
+      rgba(42, 169, 160, 0.13),
+      transparent 26%
+    ),
+    linear-gradient(145deg, #f9fdfb 0%, #e7f2ed 100%);
+
+  box-shadow:
+    0 25px 65px rgba(16, 42, 67, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  isolation: isolate;
+}
+
+.cp-city-scene::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+
+  border: 1px solid rgba(8, 127, 91, 0.08);
+  border-radius: 21px;
+
+  pointer-events: none;
+  z-index: 8;
+}
+
+.cp-map-topbar {
+  position: absolute;
+  z-index: 10;
+
+  top: 23px;
+  left: 25px;
+  right: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--cp-muted-2);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+}
+
+.cp-map-topbar > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: var(--cp-primary-dark);
+}
+
+.cp-map-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cp-primary);
+
+  box-shadow: 0 0 0 4px rgba(8, 127, 91, 0.10);
+}
+
+.cp-map-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  opacity: 0.62;
+
+  background-image:
+    linear-gradient(rgba(8, 127, 91, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 127, 91, 0.055) 1px, transparent 1px);
+
+  background-size: 32px 32px;
+
+  transform: perspective(650px) rotateX(4deg) scale(1.03);
+  transform-origin: center;
+}
+
+.cp-road {
+  position: absolute;
+  z-index: 1;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(205, 220, 214, 0.82),
+      rgba(255, 255, 255, 0.15)
+    );
+
+  box-shadow:
+    0 0 0 1px rgba(157, 180, 170, 0.13),
+    inset 0 1px 1px rgba(255, 255, 255, 0.85);
+}
+
+.cp-road-main {
+  width: 115%;
+  height: 66px;
+
+  left: -8%;
+  top: 63%;
+
+  transform: rotate(-7deg);
+}
+
+.cp-road-diagonal {
+  width: 118%;
+  height: 42px;
+
+  left: -12%;
+  top: 42%;
+
+  transform: rotate(22deg);
+}
+
+.cp-road-cross {
+  width: 82%;
+  height: 30px;
+
+  right: -15%;
+  top: 76%;
+
+  transform: rotate(-28deg);
+}
+
+.cp-city-block {
+  position: absolute;
+  z-index: 2;
+
+  border: 1px solid rgba(121, 156, 143, 0.15);
+  border-radius: 8px;
+
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.82), rgba(213,230,222,0.72));
+
+  box-shadow: 0 8px 18px rgba(16, 42, 67, 0.05);
+
+  transform: rotate(-2deg);
+}
+
+.block-a {
+  width: 120px;
+  height: 76px;
+  top: 18%;
+  left: 11%;
+}
+
+.block-b {
+  width: 145px;
+  height: 92px;
+  top: 20%;
+  right: 10%;
+  transform: rotate(4deg);
+}
+
+.block-c {
+  width: 105px;
+  height: 70px;
+  top: 56%;
+  left: 42%;
+}
+
+.block-d {
+  width: 130px;
+  height: 80px;
+  bottom: 8%;
+  right: 12%;
+}
+
+.block-e {
+  width: 80px;
+  height: 115px;
+  top: 48%;
+  left: 8%;
+}
+
+/* =========================================================
+   CSS LANDMARK — Charminar-inspired silhouette
+   ========================================================= */
+
+.cp-landmark {
+  position: absolute;
+  z-index: 4;
+
+  left: 48%;
+  top: 20%;
+
+  width: 112px;
+  height: 140px;
+
+  transform: translateX(-50%);
+  filter: drop-shadow(0 10px 10px rgba(16, 42, 67, 0.10));
+}
+
+.cp-landmark::before {
+  content: "";
+
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 0;
+
+  height: 84px;
+
+  border: 3px solid rgba(8, 127, 91, 0.42);
+  border-top: none;
+
+  background:
+    radial-gradient(circle at 50% 14px, transparent 0 13px, rgba(8,127,91,0.34) 14px 16px, transparent 17px),
+    linear-gradient(90deg, transparent 0 18%, rgba(8,127,91,0.13) 19% 81%, transparent 82%);
+  border-radius: 4px;
+}
+
+.cp-landmark-dome {
+  position: absolute;
+  left: 35px;
+  top: 45px;
+
+  width: 42px;
+  height: 40px;
+
+  border: 3px solid rgba(8, 127, 91, 0.42);
+  border-bottom: 0;
+
+  border-radius: 42px 42px 0 0;
+}
+
+.cp-landmark-dome::after {
+  content: "";
+  position: absolute;
+
+  width: 7px;
+  height: 7px;
+
+  left: 50%;
+  top: -12px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+  background: rgba(8, 127, 91, 0.45);
+}
+
+.cp-landmark-tower {
+  position: absolute;
+  bottom: 50px;
+
+  width: 14px;
+  height: 78px;
+
+  border: 2px solid rgba(8, 127, 91, 0.36);
+  border-radius: 10px 10px 3px 3px;
+
+  background: rgba(255,255,255,0.34);
+}
+
+.tower-one {
+  left: 9px;
+}
+
+.tower-two {
+  left: 89px;
+}
+
+.tower-three,
+.tower-four {
+  display: none;
+}
+
+.cp-floating-label {
+  position: absolute;
+  z-index: 6;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  padding: 10px 12px;
+
+  border: 1px solid rgba(220, 232, 227, 0.95);
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.80);
+  box-shadow: var(--cp-shadow-sm);
+
+  color: var(--cp-muted-2);
+  font-size: 8px;
+  font-weight: 700;
+
+  backdrop-filter: blur(9px);
+}
+
+.cp-floating-label span {
+  color: var(--cp-ink);
+  font-size: 17px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.cp-floating-label-one {
+  top: 30%;
+  left: 5%;
+}
+
+.cp-floating-label-two {
+  right: 5%;
+  bottom: 25%;
+}
+
+/* =========================================================
+   MARKERS
+   ========================================================= */
+
+.cp-marker {
+  position: absolute;
+  z-index: 20;
+
+  width: 26px;
+  height: 26px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.cp-marker-pin {
+  position: absolute;
+  inset: 5px;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid white;
+  border-radius: 50%;
+
+  color: white;
+  font-size: 7px;
+
+  box-shadow: 0 5px 13px rgba(16, 42, 67, 0.18);
+
+  transition:
+    transform var(--cp-fast) var(--cp-ease),
+    box-shadow var(--cp-normal) ease;
+}
+
+.cp-marker-critical .cp-marker-pin {
+  background: var(--cp-critical);
+}
+
+.cp-marker-high .cp-marker-pin {
+  background: var(--cp-high);
+}
+
+.cp-marker-medium .cp-marker-pin {
+  background: var(--cp-medium);
+}
+
+.cp-marker-low .cp-marker-pin {
+  background: var(--cp-low);
+}
+
+.cp-marker-pulse {
+  position: absolute;
+  inset: 0;
+
+  border: 1px solid currentColor;
+  border-radius: 50%;
+
+  opacity: 0.22;
+
+  animation: cpMarkerPulse 2.2s ease-out infinite;
+}
+
+.cp-marker-critical {
+  color: var(--cp-critical);
+}
+
+.cp-marker-high {
+  color: var(--cp-high);
+}
+
+.cp-marker-medium {
+  color: var(--cp-medium);
+}
+
+.cp-marker-low {
+  color: var(--cp-low);
+}
+
+.cp-marker:hover .cp-marker-pin,
+.cp-marker.is-active .cp-marker-pin {
+  transform: scale(1.16);
+  box-shadow: 0 8px 18px rgba(16, 42, 67, 0.22);
+}
+
+.cp-marker-card {
+  position: absolute;
+  left: 50%;
+  bottom: 31px;
+
+  min-width: 150px;
+  padding: 10px 11px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  transform: translateX(-50%);
+
+  border: 1px solid rgba(220, 232, 227, 0.95);
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--cp-shadow);
+
+  text-align: left;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  animation: cpMarkerCardIn 220ms var(--cp-ease) both;
+}
+
+.cp-marker-card strong {
+  color: var(--cp-ink);
+  font-size: 10px;
+}
+
+.cp-marker-card small {
+  color: var(--cp-muted);
+  font-size: 8px;
+}
+
+.cp-marker-card em {
+  width: fit-content;
+
+  padding: 3px 6px;
+  border-radius: 999px;
+
+  color: var(--cp-primary-dark);
+  background: var(--cp-primary-soft);
+
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   CITY FOOTER CARD
+   ========================================================= */
+
+.cp-city-footer-card {
+  position: absolute;
+  z-index: 10;
+
+  left: 25px;
+  right: 25px;
+  bottom: 23px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  max-width: 260px;
+
+  padding: 10px 12px;
+
+  border: 1px solid rgba(220, 232, 227, 0.95);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.80);
+  box-shadow: var(--cp-shadow-sm);
+
+  backdrop-filter: blur(10px);
+}
+
+.cp-city-footer-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  color: #fff;
+  background: var(--cp-primary);
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.cp-city-footer-card strong,
+.cp-city-footer-card span {
+  display: block;
+}
+
+.cp-city-footer-card strong {
+  color: var(--cp-ink-2);
+  font-size: 9px;
+}
+
+.cp-city-footer-card span {
+  margin-top: 2px;
+  color: var(--cp-muted-2);
+  font-size: 8px;
+}
+
+/* =========================================================
+   HERO BOTTOM STRIP
+   ========================================================= */
+
+.cp-hero-bottom {
+  position: relative;
+  z-index: 5;
+
+  width: min(calc(100% - 40px), var(--cp-content-width));
+  margin-inline: auto;
+
+  min-height: 49px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  border-top: 1px solid rgba(199, 218, 209, 0.75);
+
+  color: var(--cp-muted-2);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.cp-hero-bottom i {
+  width: 24px;
+  height: 1px;
+  background: var(--cp-border-strong);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes cpHeroCopyIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cpHeroVisualIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cpLivePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(0.72);
+    opacity: 0.62;
+  }
+}
+
+@keyframes cpMarkerPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.32;
+  }
+
+  72% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes cpMarkerCardIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes cpGlowFloat {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(18px, 13px, 0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 980px) {
+  .cp-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 42px;
+  }
+
+  .cp-hero-copy {
+    max-width: 760px;
+  }
+
+  .cp-hero h1 {
+    font-size: clamp(54px, 10vw, 76px);
+  }
+
+  .cp-city-scene {
+    min-height: 470px;
+  }
+}
+
+@media (max-width: 700px) {
+  .cp-navbar {
+    height: 68px;
+  }
+
+  .cp-navbar-inner {
+    width: min(calc(100% - 24px), var(--cp-content-width));
+  }
+
+  .cp-brand-copy small {
+    display: none;
+  }
+
+  .cp-brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cp-brand-copy strong {
+    font-size: 17px;
+  }
+
+  .cp-menu-button {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    border: 1px solid var(--cp-border);
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.76);
+  }
+
+  .cp-menu-button span {
+    width: 16px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--cp-ink-2);
+  }
+
+  .cp-nav {
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    top: calc(100% + 7px);
+
+    padding: 12px;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+
+    border: 1px solid var(--cp-border);
+    border-radius: 15px;
+
+    background: rgba(255,255,255,0.96);
+    box-shadow: var(--cp-shadow);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+
+    transition:
+      opacity var(--cp-normal) ease,
+      visibility var(--cp-normal) ease,
+      transform var(--cp-normal) var(--cp-ease);
+  }
+
+  .cp-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .cp-nav a {
+    min-height: 42px;
+    padding: 0 11px;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .cp-nav a:not(.cp-nav-login):not(.cp-nav-cta)::after {
+    display: none;
+  }
+
+  .cp-nav-cta {
+    justify-content: center;
+    margin-top: 5px;
+  }
+
+  .cp-hero-inner {
+    width: min(calc(100% - 24px), var(--cp-content-width));
+    padding-top: 34px;
+  }
+
+  .cp-hero h1 {
+    margin-top: 18px;
+    font-size: clamp(51px, 15vw, 70px);
+  }
+
+  .cp-hero-text {
+    font-size: 14px;
+  }
+
+  .cp-hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .cp-city-scene {
+    min-height: 410px;
+    border-radius: 21px;
+  }
+
+  .cp-city-footer-card {
+    left: 17px;
+    bottom: 17px;
+  }
+
+  .cp-map-topbar {
+    left: 18px;
+    right: 18px;
+  }
+
+  .cp-floating-label-two {
+    display: none;
+  }
+
+  .cp-hero-bottom {
+    width: min(calc(100% - 24px), var(--cp-content-width));
+    gap: 8px;
+    font-size: 6px;
+  }
+
+  .cp-hero-bottom i {
+    width: 13px;
+  }
+}
+
+@media (max-width: 430px) {
+  .cp-hero h1 {
+    font-size: 49px;
+  }
+
+  .cp-hero-actions .cp-button {
+    width: 100%;
+  }
+
+  .cp-hero-trust {
+    margin-top: 22px;
+  }
+
+  .cp-city-scene {
+    min-height: 355px;
+  }
+
+  .cp-floating-label-one {
+    top: 33%;
+    left: 4%;
+  }
+
+  .cp-floating-label {
+    transform: scale(0.88);
+    transform-origin: left top;
+  }
+
+  .cp-landmark {
+    transform: translateX(-50%) scale(0.8);
+  }
+}
