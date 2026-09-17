@@ -1,111 +1,456 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Brand */
+  --cp-primary: #087f5b;
+  --cp-primary-dark: #056044;
+  --cp-primary-deep: #064b39;
+  --cp-primary-soft: #e8f7f0;
+  --cp-primary-pale: #f3fbf7;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Accent */
+  --cp-teal: #0f9f82;
+  --cp-cyan: #2aa9a0;
+  --cp-gold: #d99a2b;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Priority */
+  --cp-critical: #d64545;
+  --cp-high: #e0782f;
+  --cp-medium: #c99520;
+  --cp-low: #4b8f71;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* Text */
+  --cp-ink: #102a43;
+  --cp-ink-2: #263746;
+  --cp-muted: #60727b;
+  --cp-muted-2: #7b8a91;
+
+  /* Surfaces */
+  --cp-page: #eef5f2;
+  --cp-surface: rgba(255, 255, 255, 0.92);
+  --cp-surface-solid: #ffffff;
+  --cp-surface-soft: #f7fbf9;
+  --cp-border: #dce8e3;
+  --cp-border-strong: #c7d9d2;
+
+  /* Effects */
+  --cp-shadow-sm: 0 4px 14px rgba(16, 42, 67, 0.07);
+  --cp-shadow: 0 12px 34px rgba(16, 42, 67, 0.10);
+  --cp-shadow-lg: 0 22px 55px rgba(16, 42, 67, 0.14);
+  --cp-radius-sm: 10px;
+  --cp-radius: 16px;
+  --cp-radius-lg: 22px;
+
+  /* Layout */
+  --cp-content-width: 1280px;
+  --cp-sidebar-width: 248px;
+
+  /* Motion */
+  --cp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --cp-fast: 160ms;
+  --cp-normal: 260ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  background: var(--cp-page);
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family:
+    Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  color: var(--cp-ink);
+  background:
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(42, 169, 160, 0.13),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 92% 18%,
+      rgba(8, 127, 91, 0.10),
+      transparent 30rem
+    ),
+    linear-gradient(135deg, #f4faf7 0%, #edf5f2 48%, #f7faf9 100%);
+
+  overflow-x: hidden;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle civic grid + ambient background.
+   This is intentionally decorative and sits behind page content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.42;
+
+  background-image:
+    linear-gradient(rgba(8, 127, 91, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 127, 91, 0.045) 1px, transparent 1px);
+
+  background-size: 44px 44px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.72) 42%,
+    transparent 100%
+  );
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  right: -190px;
+  bottom: -220px;
+  z-index: -1;
+  pointer-events: none;
+
+  border: 1px solid rgba(8, 127, 91, 0.10);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 42px rgba(8, 127, 91, 0.025),
+    0 0 0 84px rgba(8, 127, 91, 0.018),
+    0 0 0 126px rgba(8, 127, 91, 0.012);
+
+  animation: cpAmbientFloat 12s ease-in-out infinite alternate;
 }
 
 #root {
-  width: 1126px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Existing page wrappers should reveal the new global background. */
+.login-page,
+.register-page,
+.profile-page,
+.citizen-page,
+.complaints-page,
+.report-page,
+.details-page,
+.track-page,
+.admin-page,
+.staff-page {
+  background: transparent !important;
+}
+
+/* Existing intro panels that previously painted the whole page. */
+.login-intro {
+  background: transparent !important;
+}
+
+/* Better defaults for native controls. */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+a {
+  color: inherit;
+}
+
+img {
   max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  display: block;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+input,
+textarea,
+select {
+  color: var(--cp-ink);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+input::placeholder,
+textarea::placeholder {
+  color: #9aa8ad;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(8, 127, 91, 0.22);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   Shared classes for the next phases
+   ========================================================= */
+
+.cp-container {
+  width: min(calc(100% - 40px), var(--cp-content-width));
+  margin-inline: auto;
+}
+
+.cp-card {
+  background: var(--cp-surface);
+  border: 1px solid rgba(220, 232, 227, 0.92);
+  border-radius: var(--cp-radius);
+  box-shadow: var(--cp-shadow-sm);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cp-button {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+
   display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+
+  transition:
+    transform var(--cp-fast) var(--cp-ease),
+    box-shadow var(--cp-normal) var(--cp-ease),
+    background var(--cp-normal) var(--cp-ease),
+    border-color var(--cp-normal) var(--cp-ease);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.cp-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cp-shadow-sm);
+}
+
+.cp-button:active {
+  transform: translateY(0);
+}
+
+.cp-button-primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--cp-primary), var(--cp-teal));
+  box-shadow: 0 8px 20px rgba(8, 127, 91, 0.20);
+}
+
+.cp-button-primary:hover {
+  box-shadow: 0 12px 26px rgba(8, 127, 91, 0.27);
+}
+
+.cp-button-secondary {
+  color: var(--cp-primary-dark);
+  background: rgba(255, 255, 255, 0.78);
+  border-color: var(--cp-border-strong);
+}
+
+.cp-button-secondary:hover {
+  background: #fff;
+  border-color: rgba(8, 127, 91, 0.35);
+}
+
+.cp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  min-height: 27px;
+  padding: 0 10px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cp-section-label {
+  color: var(--cp-primary);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.cp-muted {
+  color: var(--cp-muted);
+}
+
+/* Smooth page entrance for existing page roots. */
+.login-page,
+.register-page,
+.profile-page,
+.citizen-page,
+.complaints-page,
+.report-page,
+.details-page,
+.track-page,
+.admin-page,
+.staff-page {
+  animation: cpPageIn 420ms var(--cp-ease) both;
+}
+
+/* Subtle motion for existing cards without forcing movement everywhere. */
+.register-card,
+.profile-card,
+.demo-card,
+.staff-complaints-card,
+.staff-stat-card,
+.complaints-card,
+.info-card,
+.report-form-card,
+.details-card,
+.track-card,
+.admin-card {
+  transition:
+    transform var(--cp-normal) var(--cp-ease),
+    box-shadow var(--cp-normal) var(--cp-ease),
+    border-color var(--cp-normal) var(--cp-ease);
+}
+
+.register-card:hover,
+.profile-card:hover,
+.demo-card:hover,
+.staff-complaints-card:hover,
+.complaints-card:hover,
+.info-card:hover,
+.report-form-card:hover,
+.details-card:hover,
+.track-card:hover,
+.admin-card:hover {
+  border-color: rgba(8, 127, 91, 0.18);
+  box-shadow: var(--cp-shadow);
+}
+
+/* Existing green navigation items get a more polished transition. */
+.complaints-sidebar-item,
+.staff-sidebar-item,
+.sidebar-item {
+  transition:
+    background var(--cp-fast) ease,
+    color var(--cp-fast) ease,
+    transform var(--cp-fast) var(--cp-ease);
+}
+
+.complaints-sidebar-item:hover,
+.staff-sidebar-item:hover,
+.sidebar-item:hover {
+  transform: translateX(2px);
+}
+
+/* =========================================================
+   Scrollbar
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eaf2ef;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b8cec5;
+  border-radius: 999px;
+  border: 2px solid #eaf2ef;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8fb3a6;
+}
+
+/* =========================================================
+   Animations
+   ========================================================= */
+
+@keyframes cpPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cpAmbientFloat {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(-18px, -12px, 0) rotate(3deg);
+  }
+}
+
+/* =========================================================
+   Responsive foundation
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .cp-container {
+    width: min(calc(100% - 28px), var(--cp-content-width));
+  }
+}
+
+@media (max-width: 640px) {
+  body::before {
+    background-size: 32px 32px;
+    opacity: 0.30;
+  }
+
+  body::after {
+    width: 360px;
+    height: 360px;
+    right: -180px;
+    bottom: -180px;
+  }
+
+  .cp-container {
+    width: min(calc(100% - 20px), var(--cp-content-width));
+  }
+}
+
+/* Respect accessibility preferences. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
